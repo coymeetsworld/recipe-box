@@ -1,4 +1,6 @@
 import React from 'react';
+
+import AddRecipePane from 'AddRecipePane';
 import Recipe from 'Recipe';
 
 class RecipeBox extends React.Component {
@@ -8,10 +10,18 @@ class RecipeBox extends React.Component {
 		this.state = {
 			recipes : props.recipes
 		};
+		this.handleAddRecipe = this.handleAddRecipe.bind(this);
 	}
 	
-	render () {
+	handleAddRecipe(recipe) {
+		this.setState({
+			recipes: [...this.state.recipes, recipe]
+		});
+	}
 
+	render () {
+		console.log("Rend called");
+		console.log(this.state);
 		var listRecipes = () => {
 			let id = 1;
 			return this.state.recipes.map((recipe) => {
@@ -20,8 +30,11 @@ class RecipeBox extends React.Component {
 		}
 		
 		return (
-			<div className="recipe-box">
-				{listRecipes()}	
+			<div>
+				<AddRecipePane onAddRecipe={this.handleAddRecipe}/>
+				<div className="recipe-box">
+					{listRecipes()}	
+				</div>
 			</div>
 		)
 
