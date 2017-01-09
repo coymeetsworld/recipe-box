@@ -7,20 +7,25 @@ class Recipe extends React.Component {
 		
 		this.state = {
 			name: props.name,
-			ingredientString : props.ingredientString	
+			ingredients : props.ingredients	
 		};
 	}
 	
 	render () {
 		
+		var listIngredients = () => {
+			let id = 1;
+			return this.state.ingredients.split(',').map((ingredient) => {
+				return <li key={id++}>{ingredient}</li>	
+			});
+		}		
+
 		return (
 			<div className="recipe">
 				<div className="recipe-header">{this.state.name}</div>	
 				<div className="recipe-body">
 					<ul>
-						<li>Item 1</li>
-						<li>Item 2</li>
-						<li>Item 3</li>
+						{listIngredients()}
 					</ul>
 				</div>
 				<div className="recipe-controls">
