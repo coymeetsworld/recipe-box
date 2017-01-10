@@ -4,25 +4,27 @@ class Recipe extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		
-		this.state = {
-			name: props.name,
-			ingredients : props.ingredients	
-		};
+		this.onDeleteRecipe = this.onDeleteRecipe.bind(this);
+	}
+
+	onDeleteRecipe(recipeId) {
+		return () => {
+			this.props.onDeleteRecipe(recipeId);
+		}
 	}
 	
 	render () {
 		
 		var listIngredients = () => {
 			let id = 1;
-			return this.state.ingredients.split(',').map((ingredient) => {
+			return this.props.ingredients.split(',').map((ingredient) => {
 				return <li key={id++}>{ingredient}</li>	
 			});
 		}		
 
 		return (
 			<div className="recipe">
-				<div className="recipe-header">{this.state.name}</div>	
+				<div className="recipe-header">{this.props.name}</div>
 				<div className="recipe-body">
 					<ul>
 						{listIngredients()}
@@ -30,7 +32,7 @@ class Recipe extends React.Component {
 				</div>
 				<div className="recipe-controls">
 					<button>Edit</button>
-					<button>Delete</button>	
+					<button onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 				</div>
 			</div>
 		)

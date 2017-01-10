@@ -8,9 +8,10 @@ class RecipeBox extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recipes : props.recipes
+			recipes: props.recipes
 		};
 		this.handleAddRecipe = this.handleAddRecipe.bind(this);
+		this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
 	}
 	
 	handleAddRecipe(recipe) {
@@ -18,16 +19,23 @@ class RecipeBox extends React.Component {
 			recipes: [...this.state.recipes, recipe]
 		});
 	}
+	
+	handleDeleteRecipe(recipeId) {
+		this.setState({
+			recipes : [...this.state.recipes.slice(0,recipeId), ...this.state.recipes.slice(recipeId+1)]
+		});
+	}
 
 	render () {
-		console.log("Rend called");
-		console.log(this.state);
 		var listRecipes = () => {
-			let id = 1;
-			return this.state.recipes.map((recipe) => {
-				return <Recipe key={id++} name={recipe.name} ingredients={recipe.ingredients}/>
+			return this.state.recipes.map((recipe, recipeIndex) => {
+				return (<Recipe key={recipeIndex}
+												id={recipeIndex}
+												name={recipe.name} 
+												ingredients={recipe.ingredients}
+												onDeleteRecipe={this.handleDeleteRecipe}/>)
 			});
-		}
+		};
 		
 		return (
 			<div>
