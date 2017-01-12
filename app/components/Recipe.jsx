@@ -42,7 +42,7 @@ class Recipe extends React.Component {
 		console.log(this.props);
 		var listIngredients = () => {
 			let id = 1;
-			return this.props.ingredients.split(',').map((ingredient) => {
+			return this.props.ingredients.map((ingredient) => {
 				return <li key={id++}>{ingredient}</li>	
 			});
 		}		
