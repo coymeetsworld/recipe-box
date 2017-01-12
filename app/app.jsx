@@ -5,7 +5,7 @@ import RecipeBox from 'RecipeBox';
 require('style!css!sass!applicationStyles');
 
 
-const testRecipes = [
+const exampleRecipes = [
 	{
 		'name': 'cake',
 		'ingredients' : 'milk,flour,sugar'
@@ -20,9 +20,11 @@ const testRecipes = [
 	}
 ];
 
+let demoRecipes = localStorage.getItem('recipes') || JSON.stringify(exampleRecipes);
+
 ReactDOM.render(
 	<div>
-		<RecipeBox recipes={testRecipes}/>
+		<RecipeBox recipes={demoRecipes}/>
 	</div>,
 	document.getElementById('app')
 );

@@ -8,7 +8,7 @@ class RecipeBox extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recipes: props.recipes
+			recipes: JSON.parse(props.recipes)
 		};
 		this.handleAddRecipe = this.handleAddRecipe.bind(this);
 		this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
@@ -17,24 +17,27 @@ class RecipeBox extends React.Component {
 	}
 	
 	handleAddRecipe(recipe) {
+		let recipes = [...this.state.recipes, recipe];
+		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
-			recipes: [...this.state.recipes, recipe]
+			recipes
 		});
 	}
 	
 	handleDeleteRecipe(recipeId) {
+		let recipes = [...this.state.recipes.slice(0,recipeId), ...this.state.recipes.slice(recipeId+1)];
+		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
-			recipes : [...this.state.recipes.slice(0,recipeId), ...this.state.recipes.slice(recipeId+1)]
+			recipes
 		});
 	}
 	
 	handleEditRecipe(recipeId) {			
 		let recipe = this.state.recipes[recipeId];
 		recipe.inEditMode = true;
-		console.log("Handled");
+
 		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
-		console.log(recipes);
-		
+		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
@@ -42,11 +45,8 @@ class RecipeBox extends React.Component {
 
 	handleUpdateRecipe(recipeId, updatedRecipe) {
 		/* Good form to check if updatedRecipe had any changes? Or does React handle that for us? Is it more efficent if we take care of it before calling setState? */
-		console.log("Updating recipe: ");
-		console.log(updatedRecipe);
-		
 		let recipes = [...this.state.recipes.slice(0,recipeId), updatedRecipe, ...this.state.recipes.slice(recipeId+1)];
-		
+		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
