@@ -60,6 +60,8 @@ class RecipeBox extends React.Component {
 												id={recipeIndex}
 												name={recipe.name} 
 												ingredients={recipe.ingredients}
+												directions={recipe.directions}
+												reference={recipe.reference}
 												onDeleteRecipe={this.handleDeleteRecipe}
 												onEditRecipe={this.handleEditRecipe}
 												onUpdateRecipe={this.handleUpdateRecipe}

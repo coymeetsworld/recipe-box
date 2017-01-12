@@ -24,14 +24,20 @@ class Recipe extends React.Component {
 		e.preventDefault();
 		let name = this.refs.updatedName.value;
 		this.refs.updatedName.value = '';
-		let ingredients = this.refs.updatedRecipeIngredients.value;
+		let ingredients = this.refs.updatedRecipeIngredients.value.split(',');
 		this.refs.updatedRecipeIngredients.value = '';
+		let directions = this.refs.updatedRecipeDirections.value.split(',');
+		this.refs.updatedRecipeDirections.value = '';
+		let reference = this.refs.updatedReference.value;
+		this.refs.updatedReference.value = '';
 		
 		let updatedRecipe = 
 		{
 			inEditMode: false,
 			name,
-			ingredients
+			ingredients,
+			directions,
+			reference
 		};
 		
 		this.props.onUpdateRecipe(this.props.id, updatedRecipe);
@@ -46,14 +52,21 @@ class Recipe extends React.Component {
 				return <li key={id++}>{ingredient}</li>	
 			});
 		}		
+		var listDirections = () => {
+			let id = 1;
+			return this.props.directions.map((direction) => {
+				return <li key={id++}>{direction}</li>	
+			});
+		}		
 		if (this.props.inEditMode) {
 
-						/*<button onClick={this.renderUpdateRecipe(this.props.id)}>Update</button>*/
 			return (
 				<div className="recipe">
 					<form onSubmit={this.handleUpdate.bind(this)}>
 						<input type="text" ref="updatedName" defaultValue={this.props.name} />
 						<textarea ref="updatedRecipeIngredients" defaultValue={this.props.ingredients}/>
+						<textarea ref="updatedRecipeDirections" defaultValue={this.props.directions}/>
+						<input type="text" ref="updatedReference" defaultValue={this.props.reference} />
 						<button>Update</button>
 					</form>
 				</div>
@@ -64,9 +77,21 @@ class Recipe extends React.Component {
 				<div className="recipe">
 					<div className="recipe-header">{this.props.name}</div>
 					<div className="recipe-body">
-						<ul>
-							{listIngredients()}
-						</ul>
+						<div className="recipe-ingredients">
+							<p>Ingredients</p>
+							<ul>
+								{listIngredients()}
+							</ul>
+						</div>
+						<div className="recipe-directions">
+							<p>Directions</p>
+							<ul>
+								{listDirections()}
+							</ul>
+						</div>
+						<div className="recipe-reference">
+							<p>Source: <a href={this.props.reference} target="_blank">{this.props.reference}</a></p>
+						</div>
 					</div>
 					<div className="recipe-controls">
 						<button onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
