@@ -16,11 +16,12 @@ class AddRecipePane extends React.Component {
 		
 		if (name === '') { 
 			this.refs.recipeName.focus(); 
-		} else if (ingredients === '') { 
+		} else if (ingredients.join() === '') { 
 			this.refs.recipeIngredients.focus();
-		} else if (directions === '') { 
+		} else if (directions.join() === '') { 
 			this.refs.recipeDirections.focus();
 		} else {
+		console.log(directions);
 			this.refs.recipeName.value = '';
 			this.refs.recipeIngredients.value = '';
 			this.refs.recipeDirections.value = '';

@@ -71,7 +71,8 @@ class Recipe extends React.Component {
 						<div className="recipe-header">
 							<input type="text" ref="updatedName" defaultValue={this.props.name} />
 							<div className="recipe-controls">
-								<button>Update</button>
+								<button className="update-button">Update</button>
+								<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 							</div>
 						</div>
 						<div className="recipe-body-show">
@@ -99,7 +100,6 @@ class Recipe extends React.Component {
 						{this.props.name}
 						<div className="recipe-controls">
 							<button className="edit-button" onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
-							<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 						</div>
 					
 					

@@ -30,6 +30,10 @@
 		@include edit-button;
 	}
 	
+	.update-button {
+		@include update-button;
+	}
+	
 	.recipe-controls {
 		margin-right: 0.5em;
 	}
