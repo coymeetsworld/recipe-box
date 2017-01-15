@@ -75,11 +75,11 @@ class Recipe extends React.Component {
 						</div>
 						<div className="recipe-body">
 							<div className="recipe-ingredients">
-								<p>Ingredients</p>
+								<p>Ingredients:</p>
 								<textarea ref="updatedRecipeIngredients" rows={getRows(this.props.ingredients)} defaultValue={this.props.ingredients.join('\n')}/>
 							</div>
 							<div className="recipe-directions">		
-								<p>Directions</p>
+								<p>Directions:</p>
 								<textarea ref="updatedRecipeDirections" rows={getRows(this.props.directions)} defaultValue={this.props.directions.join('\n')}/>
 							</div>
 							<div className="recipe-reference">
@@ -105,13 +105,13 @@ class Recipe extends React.Component {
 					</div>
 					<div className="recipe-body">
 						<div className="recipe-ingredients">
-							<p>Ingredients</p>
+							<p>Ingredients:</p>
 							<ul>
 								{listIngredients()}
 							</ul>
 						</div>
 						<div className="recipe-directions">
-							<p>Directions</p>
+							<p>Directions:</p>
 							<ul>
 								{listDirections()}
 							</ul>

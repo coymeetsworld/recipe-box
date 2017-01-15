@@ -1,0 +1,41 @@
+
+
+.add-recipe-pane {
+	width: 90%;
+	margin: 0 auto;
+	background-color: pink;
+	margin-top: 2em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+
+	input {
+		width: 50%;
+	}	
+	
+	span, p {
+		font-weight: bold;
+	}
+	
+	textarea {
+		min-width: 70%;
+		max-width: 70%;
+	}
+	
+	.add-recipe-controls,.add-recipe-ingredients, .add-recipe-directions, .add-recipe-reference {
+		padding-top: 0.5em;
+		padding-left: 1em;	
+	}
+	
+	.add-recipe-controls {
+		display: -webkit-flex;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		
+		.add-recipe-button {
+			margin-right: 1em;
+		}
+	}
+	
+}
