@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Recipe extends React.Component {
 	
 	constructor(props) {
@@ -73,7 +74,7 @@ class Recipe extends React.Component {
 								<button>Update</button>
 							</div>
 						</div>
-						<div className="recipe-body">
+						<div className="recipe-body-show">
 							<div className="recipe-ingredients">
 								<p>Ingredients:</p>
 								<textarea ref="updatedRecipeIngredients" rows={getRows(this.props.ingredients)} defaultValue={this.props.ingredients.join('\n')}/>
@@ -103,7 +104,7 @@ class Recipe extends React.Component {
 					
 					
 					</div>
-					<div className="recipe-body">
+					<div className="recipe-body-hide">
 						<div className="recipe-ingredients">
 							<p>Ingredients:</p>
 							<ul>

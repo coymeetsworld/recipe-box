@@ -35,7 +35,12 @@
 	}
 }
 
-.recipe-body {
+.recipe-body-hide {
+	max-height: 0px;
+	overflow: hidden;
+}
+
+.recipe-body-show {
 	background-color: #fff;
 	padding: 0.5em 8em 1em 1.5em;
 

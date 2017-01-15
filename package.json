@@ -1,8 +1,8 @@
 {
-  "name": "fcc-camper-leaderboard",
+  "name": "fcc-recipe-box",
   "version": "1.0.0",
-  "description": "FreeCodeCamp DataVis Curriculum project to implement a camper leaderboard from JSON requests.",
-  "engines" : {
+  "description": "FreeCodeCamp DataVis Curriculum project to implement a recipe box that stores recipes in local storage. Recipes can be added, edited, or deleted.",
+  "engines": {
     "node": "v7.3.0",
     "npm": "3.10.6"
   },
