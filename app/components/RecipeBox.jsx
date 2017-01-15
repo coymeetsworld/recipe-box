@@ -55,7 +55,7 @@ class RecipeBox extends React.Component {
 	render () {
 		var listRecipes = () => {
 			return this.state.recipes.map((recipe, recipeIndex) => {
-				console.log(recipe);
+
 				return (<Recipe key={recipeIndex}
 												id={recipeIndex}
 												name={recipe.name} 
@@ -66,7 +66,6 @@ class RecipeBox extends React.Component {
 												onEditRecipe={this.handleEditRecipe}
 												onUpdateRecipe={this.handleUpdateRecipe}
 												inEditMode={recipe.inEditMode}/>)
-												
 			});
 		};
 		

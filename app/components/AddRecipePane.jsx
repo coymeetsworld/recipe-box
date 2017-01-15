@@ -10,8 +10,8 @@ class AddRecipePane extends React.Component {
 
 		e.preventDefault();
 		let name = this.refs.recipeName.value;
-		let ingredients = this.refs.recipeIngredients.value.split(',');
-		let directions = this.refs.recipeDirections.value.split(',');
+		let ingredients = this.refs.recipeIngredients.value.split('\n');
+		let directions = this.refs.recipeDirections.value.split('\n');
 		let reference = this.refs.recipeReference.value;
 		
 		if (name === '') { 
@@ -35,8 +35,8 @@ class AddRecipePane extends React.Component {
 			<div className="add-recipe-pane">
 				<form onSubmit={this.handleSubmit.bind(this)}>
 					<input type="text" ref="recipeName" placeholder="Recipe name"/>
-					<textarea ref="recipeIngredients" placeholder="ingredients,in,comma,separated,list"/>
-					<textarea ref="recipeDirections" placeholder="directions,in,comma,separated,list"/>
+					<textarea ref="recipeIngredients" placeholder="Ingredient1&#10;Ingredient2&#10;Ingredient3"/>
+					<textarea ref="recipeDirections" placeholder="Step1&#10;Step2&#10;Step3"/>
 					<input type="text" ref="recipeReference" placeholder="Recipe URL"/>
 					<button>Add Recipe</button>
 				</form>					

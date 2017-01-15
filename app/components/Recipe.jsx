@@ -24,9 +24,9 @@ class Recipe extends React.Component {
 		e.preventDefault();
 		let name = this.refs.updatedName.value;
 		this.refs.updatedName.value = '';
-		let ingredients = this.refs.updatedRecipeIngredients.value.split(',');
+		let ingredients = this.refs.updatedRecipeIngredients.value.split('\n').filter((ingredient) => { return ingredient != ''; });
 		this.refs.updatedRecipeIngredients.value = '';
-		let directions = this.refs.updatedRecipeDirections.value.split(',');
+		let directions = this.refs.updatedRecipeDirections.value.split('\n').filter((direction) => { return direction != ''; });
 		this.refs.updatedRecipeDirections.value = '';
 		let reference = this.refs.updatedReference.value;
 		this.refs.updatedReference.value = '';
@@ -44,8 +44,6 @@ class Recipe extends React.Component {
 	}
 	
 	render () {
-		console.log("Render called");	
-		console.log(this.props);
 		var listIngredients = () => {
 			let id = 1;
 			return this.props.ingredients.map((ingredient) => {
@@ -59,7 +57,7 @@ class Recipe extends React.Component {
 			});
 		}		
 		if (this.props.inEditMode) {
-
+			
 			return (
 				<div className="recipe">
 					<form onSubmit={this.handleUpdate.bind(this)}>
@@ -72,11 +70,11 @@ class Recipe extends React.Component {
 						<div className="recipe-body">
 							<div className="recipe-ingredients">
 								<p>Ingredients</p>
-								<textarea ref="updatedRecipeIngredients" defaultValue={this.props.ingredients}/>
+								<textarea ref="updatedRecipeIngredients" defaultValue={this.props.ingredients.join('\n')}/>
 							</div>
 							<div className="recipe-directions">		
 								<p>Directions</p>
-								<textarea ref="updatedRecipeDirections" defaultValue={this.props.directions}/>
+								<textarea ref="updatedRecipeDirections" defaultValue={this.props.directions.join('\n')}/>
 							</div>
 							<div className="recipe-reference">
 								<p>Source: </p>
