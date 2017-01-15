@@ -17,7 +17,7 @@ class RecipeBox extends React.Component {
 	}
 	
 	handleAddRecipe(recipe) {
-		let recipes = [...this.state.recipes, recipe];
+		let recipes = [recipe, ...this.state.recipes];
 		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes

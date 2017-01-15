@@ -97,8 +97,8 @@ class Recipe extends React.Component {
 					<div className="recipe-header">
 						{this.props.name}
 						<div className="recipe-controls">
-							<button onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
-							<button onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
+							<button className="edit-button" onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
+							<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 						</div>
 					
 					

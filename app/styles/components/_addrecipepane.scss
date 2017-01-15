@@ -3,7 +3,7 @@
 .add-recipe-pane {
 	width: 90%;
 	margin: 0 auto;
-	background-color: pink;
+	background-color: #d6f5d6;
 	margin-top: 2em;
 	margin-bottom: 1em;
 	padding-top: 0.5em;
@@ -28,13 +28,15 @@
 	}
 	
 	.add-recipe-controls {
-		display: -webkit-flex;
-		display: flex;
+		@include flex;
 		justify-content: space-between;
 		align-items: center;
 		
 		.add-recipe-button {
 			margin-right: 1em;
+			button {
+				@include add-button;
+			}
 		}
 	}
 	

@@ -9,8 +9,7 @@
 }
 
 .recipe-header {
-	display: -webkit-flex;
-	display: flex;
+	@include flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: #000;
@@ -19,48 +18,20 @@
 	font-size: 18px;
 	font-weight: bold;
 	
+	button {
+		margin-right: 0.5em;
+	}
+	
+	.delete-button {
+		@include delete-button;
+	}
+	
+	.edit-button {
+		@include edit-button;
+	}
 	
 	.recipe-controls {
-		margin-right: 1em;
-		
-		button {
-			-moz-box-shadow:inset 0px -3px 7px 0px #e49922;
-			-webkit-box-shadow:inset 0px -3px 7px 0px #e49922;
-			box-shadow:inset 0px -3px 7px 0px #e49922;
-			background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #feab26), color-stop(1, #f0a91a));
-			background:-moz-linear-gradient(top, #feab26 5%, #f0a91a 100%);
-			background:-webkit-linear-gradient(top, #feab26 5%, #f0a91a 100%);
-			background:-o-linear-gradient(top, #feab26 5%, #f0a91a 100%);
-			background:-ms-linear-gradient(top, #feab26 5%, #f0a91a 100%);
-			background:linear-gradient(to bottom, #feab26 5%, #f0a91a 100%);
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#feab26', endColorstr='#f0a91a',GradientType=0);
-			background-color:#feab26;
-			-moz-border-radius:3px;
-			-webkit-border-radius:3px;
-			border-radius:3px;
-			border:1px solid #0b0e07;
-			display:inline-block;
-			cursor:pointer;
-			color:#ffffff;
-			font-family:Arial;
-			font-size:15px;
-			padding:9px 23px;
-			text-decoration:none;
-		}
-		button:hover {
-			background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f0a91a), color-stop(1, #feab26));
-			background:-moz-linear-gradient(top, #f0a91a 5%, #feab26 100%);
-			background:-webkit-linear-gradient(top, #f0a91a 5%, #feab26 100%);
-			background:-o-linear-gradient(top, #f0a91a 5%, #feab26 100%);
-			background:-ms-linear-gradient(top, #f0a91a 5%, #feab26 100%);
-			background:linear-gradient(to bottom, #f0a91a 5%, #feab26 100%);
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0a91a', endColorstr='#feab26',GradientType=0);
-			background-color:#f0a91a;
-		}
-		button:active {
-			position:relative;
-			top:1px;
-		}
+		margin-right: 0.5em;
 	}
 }
 
