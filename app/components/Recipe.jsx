@@ -83,7 +83,7 @@ class Recipe extends React.Component {
 								<textarea ref="updatedRecipeDirections" rows={getRows(this.props.directions)} defaultValue={this.props.directions.join('\n')}/>
 							</div>
 							<div className="recipe-reference">
-								<p>Source: </p>
+								<span>Source: </span>
 								<input type="text" ref="updatedReference" defaultValue={this.props.reference} />
 							</div>
 						</div>
