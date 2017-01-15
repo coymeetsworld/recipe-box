@@ -31,8 +31,6 @@ class AddRecipePane extends React.Component {
 	}
 
 	render () {
-
-		
 		return (
 			<div className="add-recipe-pane">
 				<form onSubmit={this.handleSubmit.bind(this)}>
