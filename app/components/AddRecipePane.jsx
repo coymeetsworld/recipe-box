@@ -35,8 +35,8 @@ class AddRecipePane extends React.Component {
 			<div className="add-recipe-pane">
 				<form onSubmit={this.handleSubmit.bind(this)}>
 					<input type="text" ref="recipeName" placeholder="Recipe name"/>
-					<textarea ref="recipeIngredients" placeholder="Ingredient1&#10;Ingredient2&#10;Ingredient3"/>
-					<textarea ref="recipeDirections" placeholder="Step1&#10;Step2&#10;Step3"/>
+					<textarea ref="recipeIngredients" rows="10" placeholder="Ingredient1&#10;Ingredient2&#10;Ingredient3"/>
+					<textarea ref="recipeDirections" rows="10" placeholder="Step1&#10;Step2&#10;Step3"/>
 					<input type="text" ref="recipeReference" placeholder="Recipe URL"/>
 					<button>Add Recipe</button>
 				</form>					

@@ -56,6 +56,12 @@ class Recipe extends React.Component {
 				return <li key={id++}>{direction}</li>	
 			});
 		}		
+	
+		var getRows = (entries) => {
+			return entries.length + 2;
+		}
+		
+
 		if (this.props.inEditMode) {
 			
 			return (
@@ -70,11 +76,11 @@ class Recipe extends React.Component {
 						<div className="recipe-body">
 							<div className="recipe-ingredients">
 								<p>Ingredients</p>
-								<textarea ref="updatedRecipeIngredients" defaultValue={this.props.ingredients.join('\n')}/>
+								<textarea ref="updatedRecipeIngredients" rows={getRows(this.props.ingredients)} defaultValue={this.props.ingredients.join('\n')}/>
 							</div>
 							<div className="recipe-directions">		
 								<p>Directions</p>
-								<textarea ref="updatedRecipeDirections" defaultValue={this.props.directions.join('\n')}/>
+								<textarea ref="updatedRecipeDirections" rows={getRows(this.props.directions)} defaultValue={this.props.directions.join('\n')}/>
 							</div>
 							<div className="recipe-reference">
 								<p>Source: </p>

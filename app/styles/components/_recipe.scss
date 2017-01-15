@@ -15,6 +15,10 @@
 	font-size: 18px;
 	font-weight: bold;
 	
+	input {
+		width: 50%;
+	}
+	
 	.recipe-controls {
 		margin-right: 1em;
 		
@@ -76,5 +80,11 @@
 
 	.recipe-reference {
 		font-size: 14px;
+	}
+	
+	
+	textarea {
+		min-width: 100%;
+		max-width: 100%;
 	}
 }
