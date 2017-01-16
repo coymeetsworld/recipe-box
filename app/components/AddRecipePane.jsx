@@ -56,7 +56,7 @@ class AddRecipePane extends React.Component {
 								<input type="text" ref="recipeName" placeholder="Recipe name"/>
 							</div>
 							<div className="button-section">
-								<button className='edit-button' onClick={this.renderHideAddRecipe()}>Hide</button>
+								<button type="button" className='edit-button' onClick={this.renderHideAddRecipe()}>Hide</button>
 								<button className='add-button'>Add Recipe</button>
 							</div>
 						</div>

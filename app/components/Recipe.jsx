@@ -33,6 +33,10 @@ class Recipe extends React.Component {
 		}
 	}
 	
+	handleDelete(e) {
+		e.preventDefault();
+		this.props.onDeleteRecipe(this.props.id);
+	}
 	
 	handleUpdate(e) {
 		e.preventDefault();
@@ -77,7 +81,6 @@ class Recipe extends React.Component {
 			return entries.length + 2;
 		}
 		
-
 		if (this.props.inEditMode) {
 			
 			return (
@@ -86,9 +89,9 @@ class Recipe extends React.Component {
 						<div className="recipe-header">
 							<input type="text" ref="updatedName" defaultValue={this.props.name} />
 							<div className="recipe-controls">
-								<button className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
+								<button type="button" className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
 								<button className="update-button">Update</button>
-								<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
+								<button className="delete-button" onClick={this.handleDelete.bind(this)}>Delete</button>	
 							</div>
 						</div>
 						<div className="recipe-body">
@@ -113,9 +116,9 @@ class Recipe extends React.Component {
 			return (
 				<div className="recipe">
 					<div className="recipe-header">
-						{this.props.name}
+							{this.props.name}
 						<div className="recipe-controls">
-							<button className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
+							<button type="button" className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
 							<button className="edit-button" onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
 							<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 						</div>
@@ -145,7 +148,7 @@ class Recipe extends React.Component {
 					<div className="recipe-header">
 						{this.props.name}
 						<div className="recipe-controls">
-							<button className="show-button" onClick={this.renderShowRecipe(this.props.id)}>Show</button>
+							<button type="button" className="show-button" onClick={this.renderShowRecipe(this.props.id)}>Show</button>
 						</div>
 					</div>
 				</div>);
