@@ -1,0 +1,24 @@
+.footerBar {
+	margin: 0 auto;
+	text-align: right;
+	margin-bottom: 0.75em;
+	margin-right: 1.5em;
+	
+	p {
+		font-size: 12px;
+		margin: 0;
+		padding: 0.5em 0.5em 0.25em 0;
+	}
+	
+	a {
+		text-decoration: none;
+		color: brown;
+		
+		&:hover {
+			text-decoration: underline;
+		}
+		&:visited {
+			color: brown;
+		}
+	}
+}

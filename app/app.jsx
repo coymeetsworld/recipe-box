@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import RecipeBox from 'RecipeBox';
+import FooterBar from 'FooterBar';
 
 require('style!css!sass!applicationStyles');
 
@@ -150,6 +151,7 @@ let demoRecipes = localStorage.getItem('_coymeetsworld_recipes') || JSON.stringi
 ReactDOM.render(
 	<div>
 		<RecipeBox recipes={demoRecipes}/>
+		<FooterBar/>
 	</div>,
 	document.getElementById('app')
 );

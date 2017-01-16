@@ -111,6 +111,9 @@ class RecipeBox extends React.Component {
 		
 		return (
 			<div>
+				<div className="title">
+					My Recipe Box
+				</div>
 				<AddRecipePane onShowAddRecipe={this.handleShowAddRecipe} onHideAddRecipe={this.handleHideAddRecipe} showAddRecipe={this.state.showAddRecipe} onAddRecipe={this.handleAddRecipe}/>
 				<div className="recipe-list">
 					{listRecipes()}	
