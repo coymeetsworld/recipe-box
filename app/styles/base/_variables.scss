@@ -17,6 +17,18 @@ $edit-button-bottom-gradient: #0688fa;
 $edit-button-border: #0b0e07;
 $edit-button-text-shadow: #263666;
 
+$hide-button-box-shadow: #29bbff; 
+$hide-button-top-gradient: #2dabf9;
+$hide-button-bottom-gradient: #0688fa;
+$hide-button-border: #0b0e07;
+$hide-button-text-shadow: #263666;
+
+$show-button-box-shadow: #29bbff; 
+$show-button-top-gradient: #2dabf9;
+$show-button-bottom-gradient: #0688fa;
+$show-button-border: #0b0e07;
+$show-button-text-shadow: #263666;
+
 $update-button-box-shadow: #72b352; 
 $update-button-top-gradient: #90eb63;
 $update-button-bottom-gradient: #72b352;
@@ -70,6 +82,11 @@ $update-button-text-shadow: #5b8a3c;
 	}
 }
 
+
+@mixin add-button {
+	@include button($add-button-box-shadow, $add-button-top-gradient, $add-button-bottom-gradient, $add-button-border, $add-button-text-shadow);
+}
+
 @mixin delete-button {
 	@include button($delete-button-box-shadow, $delete-button-top-gradient, $delete-button-bottom-gradient, $delete-button-border, $delete-button-text-shadow);
 }
@@ -78,8 +95,12 @@ $update-button-text-shadow: #5b8a3c;
 	@include button($edit-button-box-shadow, $edit-button-top-gradient, $edit-button-bottom-gradient, $edit-button-border, $edit-button-text-shadow);
 }
 
-@mixin add-button {
-	@include button($add-button-box-shadow, $add-button-top-gradient, $add-button-bottom-gradient, $add-button-border, $add-button-text-shadow);
+@mixin hide-button {
+	@include button($hide-button-box-shadow, $hide-button-top-gradient, $hide-button-bottom-gradient, $hide-button-border, $hide-button-text-shadow);
+}
+
+@mixin show-button {
+	@include button($show-button-box-shadow, $show-button-top-gradient, $show-button-bottom-gradient, $show-button-border, $show-button-text-shadow);
 }
 
 @mixin update-button {

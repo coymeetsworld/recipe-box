@@ -7,6 +7,7 @@ class Recipe extends React.Component {
 		super(props);
 		this.onDeleteRecipe = this.onDeleteRecipe.bind(this);
 		this.renderEditRecipe = this.renderEditRecipe.bind(this);
+		this.renderShowRecipe = this.renderShowRecipe.bind(this);
 	}
 
 	onDeleteRecipe(recipeId) {
@@ -20,6 +21,18 @@ class Recipe extends React.Component {
 			this.props.onEditRecipe(recipeId);
 		}
 	}
+
+	renderShowRecipe(recipeId) {
+		return () => {
+			this.props.onShowRecipe(recipeId);
+		}
+	}
+	renderHideRecipe(recipeId) {
+		return () => {
+			this.props.onHideRecipe(recipeId);
+		}
+	}
+	
 	
 	handleUpdate(e) {
 		e.preventDefault();
@@ -35,6 +48,7 @@ class Recipe extends React.Component {
 		let updatedRecipe = 
 		{
 			inEditMode: false,
+			inShowMode: true,
 			name,
 			ingredients,
 			directions,
@@ -45,6 +59,9 @@ class Recipe extends React.Component {
 	}
 	
 	render () {
+		
+		console.log(this.props);
+		
 		var listIngredients = () => {
 			let id = 1;
 			return this.props.ingredients.map((ingredient) => {
@@ -71,11 +88,12 @@ class Recipe extends React.Component {
 						<div className="recipe-header">
 							<input type="text" ref="updatedName" defaultValue={this.props.name} />
 							<div className="recipe-controls">
+								<button className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
 								<button className="update-button">Update</button>
 								<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 							</div>
 						</div>
-						<div className="recipe-body-show">
+						<div className="recipe-body">
 							<div className="recipe-ingredients">
 								<p>Ingredients:</p>
 								<textarea ref="updatedRecipeIngredients" rows={getRows(this.props.ingredients)} defaultValue={this.props.ingredients.join('\n')}/>
@@ -93,18 +111,18 @@ class Recipe extends React.Component {
 				</div>
 			);
 			
-		} else {
+		}	else if (this.props.inShowMode) {				
 			return (
 				<div className="recipe">
 					<div className="recipe-header">
 						{this.props.name}
 						<div className="recipe-controls">
+							<button className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
 							<button className="edit-button" onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
+							<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
 						</div>
-					
-					
 					</div>
-					<div className="recipe-body-hide">
+					<div className="recipe-body">
 						<div className="recipe-ingredients">
 							<p>Ingredients:</p>
 							<ul>
@@ -119,6 +137,17 @@ class Recipe extends React.Component {
 						</div>
 						<div className="recipe-reference">
 							<p>Source: <a href={this.props.reference} target="_blank">{this.props.reference}</a></p>
+						</div>
+					</div>
+				</div>);
+		} 
+		else {
+			return (
+				<div className="recipe">
+					<div className="recipe-header">
+						{this.props.name}
+						<div className="recipe-controls">
+							<button className="show-button" onClick={this.renderShowRecipe(this.props.id)}>Show</button>
 						</div>
 					</div>
 				</div>);

@@ -14,6 +14,8 @@ class RecipeBox extends React.Component {
 		this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
 		this.handleEditRecipe = this.handleEditRecipe.bind(this);
 		this.handleUpdateRecipe = this.handleUpdateRecipe.bind(this);
+		this.handleShowRecipe = this.handleShowRecipe.bind(this);
+		this.handleHideRecipe = this.handleHideRecipe.bind(this);
 	}
 	
 	handleAddRecipe(recipe) {
@@ -42,7 +44,32 @@ class RecipeBox extends React.Component {
 			recipes
 		});
 	}
+	
+	handleShowRecipe(recipeId) {
+		console.log("Handle called");
+		let recipe = this.state.recipes[recipeId];
+		recipe.inShowMode = true;
+		console.log(recipe);
+		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
+		localStorage.setItem('recipes', JSON.stringify(recipes));
+		this.setState({
+			recipes
+		});
+	}
 
+	handleHideRecipe(recipeId) {
+		console.log("Handle called");
+		let recipe = this.state.recipes[recipeId];
+		recipe.inShowMode = false;
+		recipe.inEditMode = false; /* Can't edit it when hidden, also will lose all changes. */
+		console.log(recipe);
+		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
+		localStorage.setItem('recipes', JSON.stringify(recipes));
+		this.setState({
+			recipes
+		});
+	}
+	
 	handleUpdateRecipe(recipeId, updatedRecipe) {
 		/* Good form to check if updatedRecipe had any changes? Or does React handle that for us? Is it more efficent if we take care of it before calling setState? */
 		let recipes = [...this.state.recipes.slice(0,recipeId), updatedRecipe, ...this.state.recipes.slice(recipeId+1)];
@@ -64,8 +91,11 @@ class RecipeBox extends React.Component {
 												reference={recipe.reference}
 												onDeleteRecipe={this.handleDeleteRecipe}
 												onEditRecipe={this.handleEditRecipe}
+												onShowRecipe={this.handleShowRecipe}
+												onHideRecipe={this.handleHideRecipe}
 												onUpdateRecipe={this.handleUpdateRecipe}
-												inEditMode={recipe.inEditMode}/>)
+												inEditMode={recipe.inEditMode}
+												inShowMode={recipe.inShowMode}/>)
 			});
 		};
 		
