@@ -145,7 +145,7 @@ const exampleRecipes = [
 	},
 ];
 
-let demoRecipes = localStorage.getItem('recipes') || JSON.stringify(exampleRecipes);
+let demoRecipes = localStorage.getItem('_coymeetsworld_recipes') || JSON.stringify(exampleRecipes);
 
 ReactDOM.render(
 	<div>

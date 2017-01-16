@@ -23,7 +23,7 @@ class RecipeBox extends React.Component {
 	
 	handleAddRecipe(recipe) {
 		let recipes = [recipe, ...this.state.recipes];
-		localStorage.setItem('recipes', JSON.stringify(recipes));
+		localStorage.setItem('_coymeetsworld_recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes,
 			showAddRecipe: false
@@ -32,7 +32,7 @@ class RecipeBox extends React.Component {
 	
 	handleDeleteRecipe(recipeId) {
 		let recipes = [...this.state.recipes.slice(0,recipeId), ...this.state.recipes.slice(recipeId+1)];
-		localStorage.setItem('recipes', JSON.stringify(recipes));
+		localStorage.setItem('_coymeetsworld_recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
@@ -43,7 +43,7 @@ class RecipeBox extends React.Component {
 		recipe.inEditMode = true;
 
 		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
-		localStorage.setItem('recipes', JSON.stringify(recipes));
+		localStorage.setItem('_coymeetsworld_recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
@@ -53,7 +53,6 @@ class RecipeBox extends React.Component {
 		let recipe = this.state.recipes[recipeId];
 		recipe.inShowMode = true;
 		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
-		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
@@ -64,7 +63,6 @@ class RecipeBox extends React.Component {
 		recipe.inShowMode = false;
 		recipe.inEditMode = false; /* Can't edit it when hidden, also will lose all changes. */
 		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
-		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
@@ -73,7 +71,7 @@ class RecipeBox extends React.Component {
 	handleUpdateRecipe(recipeId, updatedRecipe) {
 		/* Good form to check if updatedRecipe had any changes? Or does React handle that for us? Is it more efficent if we take care of it before calling setState? */
 		let recipes = [...this.state.recipes.slice(0,recipeId), updatedRecipe, ...this.state.recipes.slice(recipeId+1)];
-		localStorage.setItem('recipes', JSON.stringify(recipes));
+		localStorage.setItem('_coymeetsworld_recipes', JSON.stringify(recipes));
 		this.setState({
 			recipes
 		});
