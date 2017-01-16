@@ -32,12 +32,22 @@
 		justify-content: space-between;
 		align-items: center;
 		
-		.add-recipe-button {
+		.button-section {
 			margin-right: 1em;
-			button {
-				@include add-button;
-			}
+		}
+		button {
+			margin-right: 0.5em;
 		}
 	}
+}
+.show-create-recipe-section {
+	width: 90%;
+	margin: 0 auto;
+	text-align: right;
+	margin-top: 4em;
+	margin-bottom: 1.5em;
 	
+	.show-create-recipe-button {
+		margin-right: 0.5em;
+	}
 }

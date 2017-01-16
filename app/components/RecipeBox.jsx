@@ -8,7 +8,8 @@ class RecipeBox extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recipes: JSON.parse(props.recipes)
+			recipes: JSON.parse(props.recipes),
+			showAddRecipe: false
 		};
 		this.handleAddRecipe = this.handleAddRecipe.bind(this);
 		this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
@@ -16,13 +17,16 @@ class RecipeBox extends React.Component {
 		this.handleUpdateRecipe = this.handleUpdateRecipe.bind(this);
 		this.handleShowRecipe = this.handleShowRecipe.bind(this);
 		this.handleHideRecipe = this.handleHideRecipe.bind(this);
+		this.handleShowAddRecipe = this.handleShowAddRecipe.bind(this);
+		this.handleHideAddRecipe = this.handleHideAddRecipe.bind(this);
 	}
 	
 	handleAddRecipe(recipe) {
 		let recipes = [recipe, ...this.state.recipes];
 		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
-			recipes
+			recipes,
+			showAddRecipe: false
 		});
 	}
 	
@@ -46,10 +50,8 @@ class RecipeBox extends React.Component {
 	}
 	
 	handleShowRecipe(recipeId) {
-		console.log("Handle called");
 		let recipe = this.state.recipes[recipeId];
 		recipe.inShowMode = true;
-		console.log(recipe);
 		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
 		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
@@ -58,11 +60,9 @@ class RecipeBox extends React.Component {
 	}
 
 	handleHideRecipe(recipeId) {
-		console.log("Handle called");
 		let recipe = this.state.recipes[recipeId];
 		recipe.inShowMode = false;
 		recipe.inEditMode = false; /* Can't edit it when hidden, also will lose all changes. */
-		console.log(recipe);
 		let recipes = [...this.state.recipes.slice(0,recipeId), recipe, ...this.state.recipes.slice(recipeId+1)];
 		localStorage.setItem('recipes', JSON.stringify(recipes));
 		this.setState({
@@ -78,6 +78,18 @@ class RecipeBox extends React.Component {
 			recipes
 		});
 	}
+	
+	handleShowAddRecipe() {
+		this.setState({
+			showAddRecipe: true
+		});
+	}
+	
+	handleHideAddRecipe() {
+		this.setState({
+			showAddRecipe: false	
+		});
+	}
 
 	render () {
 		var listRecipes = () => {
@@ -85,7 +97,7 @@ class RecipeBox extends React.Component {
 
 				return (<Recipe key={recipeIndex}
 												id={recipeIndex}
-												name={recipe.name} 
+												name={recipe.name}
 												ingredients={recipe.ingredients}
 												directions={recipe.directions}
 												reference={recipe.reference}
@@ -101,7 +113,7 @@ class RecipeBox extends React.Component {
 		
 		return (
 			<div>
-				<AddRecipePane onAddRecipe={this.handleAddRecipe}/>
+				<AddRecipePane onShowAddRecipe={this.handleShowAddRecipe} onHideAddRecipe={this.handleHideAddRecipe} showAddRecipe={this.state.showAddRecipe} onAddRecipe={this.handleAddRecipe}/>
 				<div className="recipe-list">
 					{listRecipes()}	
 				</div>

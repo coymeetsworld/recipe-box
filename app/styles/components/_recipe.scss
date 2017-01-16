@@ -22,25 +22,6 @@
 		margin-right: 0.5em;
 	}
 	
-	.delete-button {
-		@include delete-button;
-	}
-	
-	.edit-button {
-		@include edit-button;
-	}
-	
-	.update-button {
-		@include update-button;
-	}
-
-	.show-button {
-		@include show-button;
-	}
-
-	.hide-button {
-		@include hide-button;
-	}
 	
 	.recipe-controls {
 		margin-right: 0.5em;

@@ -5,6 +5,12 @@ $add-button-bottom-gradient: #fb9e25;
 $add-button-border: #eeb44f;
 $add-button-text-shadow: #cc9f52;
 
+$create-recipe-button-box-shadow: #72b352; 
+$create-recipe-button-top-gradient: #90eb63;
+$create-recipe-button-bottom-gradient: #72b352;
+$create-recipe-button-border: #72b352;
+$create-recipe-button-text-shadow: #5b8a3c;
+
 $delete-button-top-gradient: #d0451b;
 $delete-button-bottom-gradient: #bc3315;
 $delete-button-border: #942911;
@@ -87,6 +93,10 @@ $update-button-text-shadow: #5b8a3c;
 	@include button($add-button-box-shadow, $add-button-top-gradient, $add-button-bottom-gradient, $add-button-border, $add-button-text-shadow);
 }
 
+@mixin create-recipe-button {
+	@include button($create-recipe-button-box-shadow, $create-recipe-button-top-gradient, $create-recipe-button-bottom-gradient, $create-recipe-button-border, $create-recipe-button-text-shadow);
+}
+
 @mixin delete-button {
 	@include button($delete-button-box-shadow, $delete-button-top-gradient, $delete-button-bottom-gradient, $delete-button-border, $delete-button-text-shadow);
 }
@@ -105,4 +115,32 @@ $update-button-text-shadow: #5b8a3c;
 
 @mixin update-button {
 	@include button($update-button-box-shadow, $update-button-top-gradient, $update-button-bottom-gradient, $update-button-border, $update-button-text-shadow);
+}
+
+.add-button {
+	@include add-button;
+}
+
+.delete-button {
+	@include delete-button;
+}
+	
+.edit-button {
+	@include edit-button;
+}
+
+.hide-button {
+	@include hide-button;
+}
+	
+.update-button {
+	@include update-button;
+}
+
+.show-button {
+	@include show-button;
+}
+
+.show-create-recipe-button {
+	@include create-recipe-button;
 }

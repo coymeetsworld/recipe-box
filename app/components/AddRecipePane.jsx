@@ -4,6 +4,7 @@ class AddRecipePane extends React.Component {
 	
 	constructor(props) {
 		super(props);
+		this.renderShowAddRecipe = this.renderShowAddRecipe.bind(this);
 	}
 	
 	handleSubmit (e) {
@@ -21,7 +22,6 @@ class AddRecipePane extends React.Component {
 		} else if (directions.join() === '') { 
 			this.refs.recipeDirections.focus();
 		} else {
-		console.log(directions);
 			this.refs.recipeName.value = '';
 			this.refs.recipeIngredients.value = '';
 			this.refs.recipeDirections.value = '';
@@ -31,34 +31,57 @@ class AddRecipePane extends React.Component {
 		
 	}
 
+	renderShowAddRecipe() {
+		return () => {
+			this.props.onShowAddRecipe();
+		}
+	}
+	
+	renderHideAddRecipe() {
+		return () => {
+			this.props.onHideAddRecipe();
+		}
+	}
+
+
 	render () {
-		return (
-			<div className="add-recipe-pane">
-				<form onSubmit={this.handleSubmit.bind(this)}>
-					<div className="add-recipe-controls">
-						<div className="add-recipe-name">
-							<span>New recipe name: </span>
-							<input type="text" ref="recipeName" placeholder="Recipe name"/>
+		
+		if (this.props.showAddRecipe) {
+			return (
+				<div className="add-recipe-pane">
+					<form onSubmit={this.handleSubmit.bind(this)}>
+						<div className="add-recipe-controls">
+							<div className="add-recipe-name">
+								<span>New recipe name: </span>
+								<input type="text" ref="recipeName" placeholder="Recipe name"/>
+							</div>
+							<div className="button-section">
+								<button className='edit-button' onClick={this.renderHideAddRecipe()}>Hide</button>
+								<button className='add-button'>Add Recipe</button>
+							</div>
 						</div>
-						<div className="add-recipe-button">
-							<button>Add Recipe</button>
+						<div className="add-recipe-ingredients">
+							<p>Ingredients:</p>		
+							<textarea ref="recipeIngredients" rows="5" placeholder="Ingredient1&#10;Ingredient2&#10;Ingredient3"/>
 						</div>
-					</div>
-					<div className="add-recipe-ingredients">
-						<p>Ingredients:</p>		
-						<textarea ref="recipeIngredients" rows="5" placeholder="Ingredient1&#10;Ingredient2&#10;Ingredient3"/>
-					</div>
-					<div className="add-recipe-directions">
-						<p>Directions:</p>
-						<textarea ref="recipeDirections" rows="5" placeholder="Step1&#10;Step2&#10;Step3"/>
-					</div>
-					<div className="add-recipe-reference">
-						<span>Source: </span>
-						<input type="text" ref="recipeReference" placeholder="Recipe URL"/>
-					</div>
-				</form>					
-			</div>
-		)
+						<div className="add-recipe-directions">
+							<p>Directions:</p>
+							<textarea ref="recipeDirections" rows="5" placeholder="Step1&#10;Step2&#10;Step3"/>
+						</div>
+						<div className="add-recipe-reference">
+							<span>Source: </span>
+							<input type="text" ref="recipeReference" placeholder="Recipe URL"/>
+						</div>
+					</form>					
+				</div>
+			)
+		} else {
+			return (
+				<div className="show-create-recipe-section">
+					<button className="show-create-recipe-button" onClick={this.renderShowAddRecipe()}>Create Recipe</button>
+				</div>
+			);
+		}
 		
 	}	
 	
