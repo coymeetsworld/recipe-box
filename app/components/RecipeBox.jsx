@@ -7,10 +7,18 @@ class RecipeBox extends React.Component {
 
 	constructor(props) {
 		super(props);
+		
+		/* Setting inShowMode and inEditMode to false in componentDidUnmount didn't work. Will leave it here for time being but it should be investigated and changed. */
+		const recipes = JSON.parse(props.recipes).map((recipe) => {
+			recipe.inShowMode = false;	
+			recipe.inEditMode = false;	
+			return recipe
+		});
 		this.state = {
-			recipes: JSON.parse(props.recipes),
+			recipes,
 			showAddRecipe: false
 		};
+		
 		this.handleAddRecipe = this.handleAddRecipe.bind(this);
 		this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
 		this.handleEditRecipe = this.handleEditRecipe.bind(this);
@@ -20,6 +28,7 @@ class RecipeBox extends React.Component {
 		this.handleShowAddRecipe = this.handleShowAddRecipe.bind(this);
 		this.handleHideAddRecipe = this.handleHideAddRecipe.bind(this);
 	}
+	
 	
 	handleAddRecipe(recipe) {
 		let recipes = [recipe, ...this.state.recipes];
