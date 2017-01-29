@@ -86,7 +86,7 @@ export class Recipe extends React.Component {
 					<div className="recipe-header">
 							{name}
 						<div className="recipe-controls">
-							<button type="button" className="hide-button" onClick={() => {dispatch(hidRecipe(id))}}>Hide</button>
+							<button type="button" className="hide-button" onClick={() => {dispatch(hideRecipe(id))}}>Hide</button>
 							<button className="edit-button" onClick={() => {dispatch(editRecipe(id))}}>Edit</button>
 							<button className="delete-button" onClick={() => { dispatch(deleteRecipe(id))}}>Delete</button>	
 						</div>
