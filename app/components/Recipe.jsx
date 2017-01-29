@@ -17,14 +17,14 @@ export class Recipe extends React.Component {
 		this.refs.updatedReference.value = '';
 		
 		let updatedRecipe = 
-		{
-			inEditMode: false,
-			inShowMode: true,
-			name,
-			ingredients,
-			directions,
-			reference
-		};
+			{
+				inEditMode: false,
+				inShowMode: true,
+				name,
+				ingredients,
+				directions,
+				reference
+			};
 		var {dispatch} = this.props;
 		dispatch(updateRecipe(this.props.id, updatedRecipe));
 	}
@@ -60,7 +60,7 @@ export class Recipe extends React.Component {
 							<div className="recipe-controls">
 								<button type="button" className="hide-button" onClick={() => {dispatch(hideRecipe(id))}}>Hide</button>
 								<button className="update-button">Update</button>
-								<button className="delete-button" onClick={() => {dispatch(deleteRecipe(id))}}>Delete</button>	
+								<button className="delete-button" onClick={(e) => {e.preventDefault(); dispatch(deleteRecipe(id))}}>Delete</button>
 							</div>
 						</div>
 						<div className="recipe-body">
@@ -80,16 +80,15 @@ export class Recipe extends React.Component {
 					</form>
 				</div>
 			);
-			
 		}	else if (inShowMode) {				
 			return (
 				<div className="recipe">
 					<div className="recipe-header">
 							{name}
 						<div className="recipe-controls">
-							<button type="button" className="hide-button" onClick={() => {dispatch(hideRecipe(id))}}>Hide</button>
+							<button type="button" className="hide-button" onClick={() => {dispatch(hidRecipe(id))}}>Hide</button>
 							<button className="edit-button" onClick={() => {dispatch(editRecipe(id))}}>Edit</button>
-							<button className="delete-button" onClick={() => {dispatch(deleteRecipe(id))}}>Delete</button>	
+							<button className="delete-button" onClick={() => { dispatch(deleteRecipe(id))}}>Delete</button>	
 						</div>
 					</div>
 					<div className="recipe-body">
