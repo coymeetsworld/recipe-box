@@ -1,42 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {deleteRecipe, hideRecipe, editRecipe, showRecipe, updateRecipe } from 'actions';
 
 
-class Recipe extends React.Component {
-	
-	constructor(props) {
-		super(props);
-		this.onDeleteRecipe = this.onDeleteRecipe.bind(this);
-		this.renderEditRecipe = this.renderEditRecipe.bind(this);
-		this.renderShowRecipe = this.renderShowRecipe.bind(this);
-	}
-
-	onDeleteRecipe(recipeId) {
-		return () => {
-			this.props.onDeleteRecipe(recipeId);
-		}
-	}
-	
-	renderEditRecipe(recipeId) {
-		return () => {
-			this.props.onEditRecipe(recipeId);
-		}
-	}
-
-	renderShowRecipe(recipeId) {
-		return () => {
-			this.props.onShowRecipe(recipeId);
-		}
-	}
-	renderHideRecipe(recipeId) {
-		return () => {
-			this.props.onHideRecipe(recipeId);
-		}
-	}
-	
-	handleDelete(e) {
-		e.preventDefault();
-		this.props.onDeleteRecipe(this.props.id);
-	}
+export class Recipe extends React.Component {
 	
 	handleUpdate(e) {
 		e.preventDefault();
@@ -58,21 +25,23 @@ class Recipe extends React.Component {
 			directions,
 			reference
 		};
-		
-		this.props.onUpdateRecipe(this.props.id, updatedRecipe);
+		var {dispatch} = this.props;
+		dispatch(updateRecipe(this.props.id, updatedRecipe));
 	}
 	
 	render () {
-		
+
+		var {dispatch, inEditMode, inShowMode, name, id, directions, ingredients, reference } = this.props;
+
 		var listIngredients = () => {
 			let id = 1;
-			return this.props.ingredients.map((ingredient) => {
+			return ingredients.map((ingredient) => {
 				return <li key={id++}>{ingredient}</li>	
 			});
 		}		
 		var listDirections = () => {
 			let id = 1;
-			return this.props.directions.map((direction) => {
+			return directions.map((direction) => {
 				return <li key={id++}>{direction}</li>	
 			});
 		}		
@@ -81,46 +50,46 @@ class Recipe extends React.Component {
 			return entries.length + 2;
 		}
 		
-		if (this.props.inEditMode) {
+		if (inEditMode) {
 			
 			return (
 				<div className="recipe">
 					<form onSubmit={this.handleUpdate.bind(this)}>
 						<div className="recipe-header">
-							<input type="text" ref="updatedName" defaultValue={this.props.name} />
+							<input type="text" ref="updatedName" defaultValue={name} />
 							<div className="recipe-controls">
-								<button type="button" className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
+								<button type="button" className="hide-button" onClick={() => {dispatch(hideRecipe(id))}}>Hide</button>
 								<button className="update-button">Update</button>
-								<button className="delete-button" onClick={this.handleDelete.bind(this)}>Delete</button>	
+								<button className="delete-button" onClick={() => {dispatch(deleteRecipe(id))}}>Delete</button>	
 							</div>
 						</div>
 						<div className="recipe-body">
 							<div className="recipe-ingredients">
 								<p>Ingredients:</p>
-								<textarea ref="updatedRecipeIngredients" rows={getRows(this.props.ingredients)} defaultValue={this.props.ingredients.join('\n')}/>
+								<textarea ref="updatedRecipeIngredients" rows={getRows(ingredients)} defaultValue={ingredients.join('\n')}/>
 							</div>
 							<div className="recipe-directions">		
 								<p>Directions:</p>
-								<textarea ref="updatedRecipeDirections" rows={getRows(this.props.directions)} defaultValue={this.props.directions.join('\n')}/>
+								<textarea ref="updatedRecipeDirections" rows={getRows(directions)} defaultValue={directions.join('\n')}/>
 							</div>
 							<div className="recipe-reference">
 								<span>Source: </span>
-								<input type="text" ref="updatedReference" defaultValue={this.props.reference} />
+								<input type="text" ref="updatedReference" defaultValue={reference} />
 							</div>
 						</div>
 					</form>
 				</div>
 			);
 			
-		}	else if (this.props.inShowMode) {				
+		}	else if (inShowMode) {				
 			return (
 				<div className="recipe">
 					<div className="recipe-header">
-							{this.props.name}
+							{name}
 						<div className="recipe-controls">
-							<button type="button" className="hide-button" onClick={this.renderHideRecipe(this.props.id)}>Hide</button>
-							<button className="edit-button" onClick={this.renderEditRecipe(this.props.id)}>Edit</button>
-							<button className="delete-button" onClick={this.onDeleteRecipe(this.props.id)}>Delete</button>	
+							<button type="button" className="hide-button" onClick={() => {dispatch(hideRecipe(id))}}>Hide</button>
+							<button className="edit-button" onClick={() => {dispatch(editRecipe(id))}}>Edit</button>
+							<button className="delete-button" onClick={() => {dispatch(deleteRecipe(id))}}>Delete</button>	
 						</div>
 					</div>
 					<div className="recipe-body">
@@ -137,7 +106,7 @@ class Recipe extends React.Component {
 							</ul>
 						</div>
 						<div className="recipe-reference">
-							<p>Source: <a href={this.props.reference} target="_blank">{this.props.reference}</a></p>
+							<p>Source: <a href={reference} target="_blank">{reference}</a></p>
 						</div>
 					</div>
 				</div>);
@@ -146,17 +115,18 @@ class Recipe extends React.Component {
 			return (
 				<div className="recipe">
 					<div className="recipe-header">
-						{this.props.name}
+						{name}
 						<div className="recipe-controls">
-							<button type="button" className="show-button" onClick={this.renderShowRecipe(this.props.id)}>Show</button>
+							<button type="button" className="show-button" onClick={() => {dispatch(showRecipe(id))}}>Show</button>
 						</div>
 					</div>
 				</div>);
 		}
-		
-
 	}
-	
 }
 
-export default Recipe;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps)(Recipe);

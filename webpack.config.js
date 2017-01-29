@@ -5,7 +5,7 @@ module.exports = {
 	
 	/* Where it should start processing your code. */
 	entry: [
-		'./app/app.jsx',
+		'./app/index.jsx',
 	],
 	output: {
 		path: __dirname,
@@ -22,10 +22,14 @@ module.exports = {
 		root: __dirname, /* variable in node.js that gives path to file you're in */
 		modulesDirectories: [
 			'node_modules',
-			'./app/components',	
+			'./app/components'
 		],
 		alias: { /* Webpack aliases */
 			applicationStyles: 'app/styles/app.scss',
+			actions: 'app/actions/actions.jsx',
+			reducers: 'app/reducers/reducers.jsx',
+			configureStore: 'app/store/configureStore.jsx',
+			localStorage: 'app/localStorage.js'
 		},
 		extensions: ['', '.js', '.jsx']
 	},

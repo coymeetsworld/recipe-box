@@ -21,13 +21,19 @@
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.23.1",
     "express": "^4.14.0",
+    "lodash": "^4.17.4",
     "node-sass": "^3.13.0",
     "normalize-scss": "^6.0.0",
-    "react": "^0.14.7",
+    "react": "^0.14.8",
     "react-dom": "^0.14.7",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
     "sass-loader": "^4.0.2",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.3.2"
   }
 }
