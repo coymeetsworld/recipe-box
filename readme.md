@@ -13,3 +13,7 @@ Recipes are stored in *[local storage](https://developer.mozilla.org/en-US/docs/
 Since local storage is used to store the recipes, a user can clear their recipes on their browser by typing `localStorage.setItem('_coymeetsworld_recipes', '')`. Refreshing the browser will render the default recipes.
 
 *[link to project description](https://www.freecodecamp.com/challenges/build-a-recipe-box)*
+
+## Working Demo
+
+*[https://coymeetsworld.github.io/recipe-box/](https://coymeetsworld.github.io/recipe-box/)*
